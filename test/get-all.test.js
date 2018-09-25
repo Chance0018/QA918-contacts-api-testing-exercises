@@ -8,18 +8,14 @@ import { contacts } from '../src/persistence'
 
 describe('/contacts', () => {
   
-  beforeEach(async () => {
-    await contacts.remove({})
-  })
+  beforeEach(async () => await contacts.remove({}))
   
   let uri
   beforeEach(async () => {
     uri = await Listen(server)
   })
   
-  afterEach(async () => {
-    await server.close()
-  })
+  afterEach(async () => await server.close())
   
   it(`GET: / -> [] by default`, async () => {
     const response = await fetch(`${uri}`)
@@ -38,9 +34,9 @@ describe('/contacts', () => {
       },
       body: JSON.stringify(payload),
     })
-
+    
     const result = await response.json()
-
+    
     expect(response.status).to.be.equal(200)
     expect(result.name).to.be.equal(payload.name)
   })

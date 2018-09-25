@@ -1,6 +1,7 @@
 module.exports = wallaby => ({
   files: [
     'src/**/*',
+    'test/**/*',
     '!test/**/*.test.js',
     '.babelrc'
   ],

@@ -54,7 +54,7 @@ export const server = micro(cors(
   ))
 )
 
-if (env !== 'testing') {
+if (env === 'development') {
   server.listen(port, () => console.log(`Server started at: http://localhost:${port}`))
 }
 
