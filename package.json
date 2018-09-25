@@ -17,7 +17,8 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "code": "^5.2.0",
-    "neutrino": "^8.3.0"
+    "neutrino": "^8.3.0",
+    "node-fetch": "^2.2.0"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
