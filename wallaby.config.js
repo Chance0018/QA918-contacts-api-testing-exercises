@@ -20,6 +20,6 @@ module.exports = wallaby => ({
                                          // (no need to duplicate .babelrc, if you have it, it will be automatically loaded)
                                        }),
     
-  },
+  }
   
 })

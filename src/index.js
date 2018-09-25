@@ -18,11 +18,13 @@ export const server = micro(cors(
       const results = await contacts.find({})
       return send(res, 200, results)
     }),
+    
     post('/', async (req, res) => {
       const contact = await json(req)
-      console.log(contact)
-      return send(res, 200, contact)
+      const result = await contacts.insert(contact)
+      return send(res, 200, result)
     }),
+    
     get('/:id', async (req, res) => {
       const { id } = req.params
       const results = await contacts.findOne({ _id: id })
@@ -30,14 +32,16 @@ export const server = micro(cors(
         return send(res, 404)
       return send(res, 200, results)
     }),
+    
     put('/:id', async (req, res) => {
       const { id } = req.params
       const contact = await json(req)
-      const results = await contacts.update({ _id: id }, { $set: { ...contact } })
+      const results = await contacts.update({ _id: id }, { $set: contact })
       if (!results)
         return send(res, 404)
       return send(res, 200, results)
     }),
+    
     del('/:id', async (req, res) => {
       const { id } = req.params
       const results = await contacts.remove({ _id: id })
@@ -45,9 +49,9 @@ export const server = micro(cors(
         return send(res, 404)
       return send(res, 200, results)
     }),
-    get('/*', (req, res) => send(res, 404, { message: 'Route not found' })),
-  ),
-                            ),
+    
+    get('/*', (req, res) => send(res, 404, { message: 'Route not found' }))
+  ))
 )
 
 if (env !== 'testing') {

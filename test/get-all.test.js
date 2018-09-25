@@ -30,20 +30,19 @@ describe('/contacts', () => {
   })
   
   it(`POST: / -> [] by default`, async () => {
-    const request = { name: 'Testing' }
+    const payload = { name: 'Testing' }
     const response = await fetch(`${uri}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(request),
+      body: JSON.stringify(payload),
     })
 
     const result = await response.json()
 
     expect(response.status).to.be.equal(200)
-    expect(result).to.be.equal(request)
+    expect(result.name).to.be.equal(payload.name)
   })
-  
   
 })
