@@ -36,10 +36,10 @@ export const server = micro(cors(
     put('/:id', async (req, res) => {
       const { id } = req.params
       const contact = await json(req)
-      const results = await contacts.update({ _id: id }, { $set: contact })
-      if (!results)
+      const [, result] = await contacts.update({ _id: id }, { $set: contact }, { returnUpdatedDocs: true })
+      if (!result)
         return send(res, 404)
-      return send(res, 200, results)
+      return send(res, 200, result)
     }),
     
     del('/:id', async (req, res) => {
